@@ -2,7 +2,7 @@
 
 namespace game {
 
-  Action Controller::get_move() {
+  Action Controller::getMove() {
     return Action();
   }
 

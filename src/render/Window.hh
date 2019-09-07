@@ -11,4 +11,3 @@ namespace render {
     void processInput(GLFWwindow *window);
   };
 }
-

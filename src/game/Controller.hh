@@ -6,7 +6,7 @@ namespace game {
 
   class Controller {
   public:
-    Action get_move();
+    Action getMove();
   };
 
 }
