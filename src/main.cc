@@ -1,12 +1,16 @@
-#include "game/Engine.hh"
+#include "game/Entity.hh"
 #include "render/Window.hh"
-#include "reactphysics3d.h"
 
-using namespace render;
+using namespace game;
 
 int main() {
-  auto *sphereShape = new reactphysics3d::SphereShape(3);
-  Window window;
+  Entity entity = Entity();
+
+  for (int i = 0; i < 60 * 5; ++i) {
+    entity.update();
+  }
+
+  render::Window window;
   window.init();
   glfwTerminate();
 //  render::Window window;
