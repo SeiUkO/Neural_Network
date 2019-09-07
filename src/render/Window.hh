@@ -6,8 +6,6 @@
 namespace render {
   class Window {
   public:
-    Window();
-
     int init();
 
     void processInput(GLFWwindow *window);
