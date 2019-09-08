@@ -1,5 +1,6 @@
 # Neural_Network
 
 ### Dependencies
-- CMake 
+- CMake3
 - OpenGL 4
+- glfw3
