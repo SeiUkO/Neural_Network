@@ -10,8 +10,20 @@ namespace game {
 
     void update();
 
+    size_t getInputSize();
+
+    size_t getOutputSize();
+
+    void fillInputLayer(float* layer);
+
+    void fillOutputLayer(float* layer);
+
   private:
     static const int nbRigidBodies = 4;
+
+    static size_t getInputUnitSize();
+
+    static size_t getOutputUnitSize();
 
     reactphysics3d::DynamicsWorld dynamicsWorld;
     reactphysics3d::RigidBody* floor;

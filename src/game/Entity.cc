@@ -19,6 +19,21 @@ namespace game {
     return floorShape;
   }
 
+  static void fillArrayFromMatrix(float* array, const Matrix3x3& m) {
+    Vector3 v = m.getRow(0);
+    array[0] = v.x;
+    array[1] = v.y;
+    array[2] = v.z;
+    v = m.getRow(1);
+    array[3] = v.x;
+    array[4] = v.y;
+    array[5] = v.z;
+    v = m.getRow(2);
+    array[6] = v.x;
+    array[7] = v.y;
+    array[8] = v.z;
+  }
+
   Entity::Entity() : dynamicsWorld(DynamicsWorld(Vector3(0, -9.81, 0))) {
 
     dynamicsWorld.enableSleeping(false);
@@ -45,5 +60,32 @@ namespace game {
     dynamicsWorld.update(0.0166666);
     std::cout << "body1 " << rigidBodies[0]->getTransform().to_string() << std::endl;
     std::cout << "body2 " << rigidBodies[1]->getTransform().to_string() << std::endl;
+  }
+
+  size_t Entity::getInputSize() {
+    return nbRigidBodies * getInputUnitSize();
+  }
+
+  size_t Entity::getOutputSize() {
+    return nbRigidBodies * getOutputUnitSize();
+  }
+
+  void Entity::fillInputLayer(float* layer) {
+    for (int i = 0; i < nbRigidBodies; ++i) {
+      Matrix3x3 m = rigidBodies[i]->getTransform().getOrientation().getMatrix();
+      fillArrayFromMatrix(&(layer[i * getInputUnitSize()]), m);
+    }
+  }
+
+  void Entity::fillOutputLayer(float* layer) {
+
+  }
+
+  size_t Entity::getInputUnitSize() {
+    return (sizeof(float) + sizeof(float) * 9);
+  }
+
+  size_t Entity::getOutputUnitSize() {
+    return (sizeof(float) * 3);
   }
 }
